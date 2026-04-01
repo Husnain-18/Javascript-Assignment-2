@@ -3,103 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Assignments</title>
+    <title>Javascript Assignment 2</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .main-content-wrapper {
-            background-color: #f0f8ed;
-            min-height: calc(100vh - 56px - 54px); 
-        }
-        .custom-card {
-            background-color: #f0f8ed;
-            border: 1px solid #ced4da;
-        }
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-        }
-        .btn-danger {
-            background-color: #dc3545; 
-            border-color: #dc3545;
-        }
-        .custom-input {
-            background-color: transparent;
-            border: 1px solid #ced4da;
-            height: 50px; 
-        }
-       
-        .btn-clear {
-            background-color: #f8f9fa00;
-            border: 1px solid #ced4da;
-            color: #212529;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <div class="container-fluid mx-3 px-4" >
-            <a class="navbar-brand" href="index.html">Assignments</a>
-            <div class="navbar-text text-white ms-3 me-auto">
-                Chapter 8 - 14
+    <nav class="navbar bg-custom-dark py-2">
+        <div class="container-fluid px-5 d-flex align-items-center">
+            <div class="d-flex align-items-baseline">
+                <span class="text-white fs-5 me-3">Assignments</span>
+                <span class="text-white-50 small">Chapter 15 - 20</span>
             </div>
-            <form class="d-flex d-none d-md-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-light" type="submit" style="color: green; border-color: green;">Search</button>
-            </form>
+            <div class="d-flex gap-2">
+                <input class="search-input" type="text" placeholder="Search">
+                <button class="search-btn" type="button">Search</button>
+            </div>
         </div>
     </nav>
 
-    <div class="main-content-wrapper py-5">
-        <div class="container">
-            
-            <h2 class="text-center mb-5 text-dark">
-                Chapter # 8 - 14 | Concatenation | Prompts | Iif...else and else if statements
-            </h2>
-<hr><br>
-            <div class="card custom-card mb-5">
-                <div class="card-body p-4">
-                    <div class="button-container">
-                        <button class="btn btn-danger" data-action="concatenate">Concatenate Some Strings</button>
-                        <button class="btn btn-danger" data-action="askName">Ask Name From User</button>
-                        <button class="btn btn-danger" data-action="comparison">Comparison Operators</button>
-                        <button class="btn btn-danger" data-action="ifElse">if else if</button>
-                        <button class="btn btn-danger" data-action="testConditions">Testing Sets of Conditions</button>
-                        <button class="btn btn-danger" data-action="nestedIf">If Statements Nested</button>
-                        <button class="btn btn-danger" data-action="login">Login</button>
-                        <button class="btn btn-danger" data-action="check">Check</button>
+    <main class="container my-5 flex-grow-1" style="max-width: 1050px;">
+        
+        <div class="text-center mb-4">
+            <h2 class="page-title">Chapter # 15 - 20 | Arrays: It's Methods & for loops</h2>
+        </div>
+        
+        <hr class="mb-4" style="border-color: #b2c5b7;">
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-6">
+                <h4 class="section-title">Input</h4>
+                <div class="custom-container d-flex align-items-center" style="min-height: 100px;">
+                    <div class="input-group">
+                        <input type="text" id="inputValue" class="form-control" placeholder="Type your text here" style="border-color: #ced4da;">
+                        <button class="btn btn-outline-secondary bg-white" type="button" onclick="clearInput()">Clear</button>
                     </div>
                 </div>
             </div>
-<br>
-            <div class="mb-5">
-                <h3 class="text-center mb-3">Original Statement</h3>
-                <div class="form-control custom-input mb-3" style="height: auto; min-height: 60px; word-break: break-word;" >
-                    <p class="text-center" id="originalStatement"></p>
-                </div>
-                <div class="text-center" >
-                    <button class="btn btn-clear" id="clearOutput">Clear Statement</button>
-                </div>
-            </div>
 
-            <div class="mb-4">
-                <h3 class="text-center mb-3">Output / Result</h3>
-                <div class="form-control custom-input mb-3" style="height: auto; min-height: 60px; word-break: break-word;" >
-                    <p class="text-center" id="outputResult"></p>
-                </div>
-                <div class="text-center">
-                    <button class="btn btn-clear" id="clearoutput">Clear Output</button>
+            <div class="col-md-6">
+                <h4 class="section-title">Original String</h4>
+                <div class="string-box shadow-sm" id="originalString">
+                   1) Faisalabad &nbsp; 2) Lahore &nbsp; 3) Karachi &nbsp; 4) Islamabad &nbsp; 5) Peshawar &nbsp; 6) Sarghoda &nbsp; 7) Gojra
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer class="bg-dark text-white text-center py-3" >
-        <p class="mb-0">&copy; 2026. Assignment1 By <a href="index.html" class="text-white text-decoration-none" target="_blank">Husnain Razzaq</a></p>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <h4 class="section-title">Buttons</h4>
+                <div class="custom-container" style="height: 200px; display: flex; flex-direction: column; justify-content: center;">
+                    <div class="row g-2 justify-content-center">
+                        <div class="col-6"><button class="btn btn-custom-red rounded-1" onclick="simpleAlert()">Simple Alert</button></div>
+                        <div class="col-6"><button class="btn btn-custom-red rounded-1" onclick="printMyName()">Print My Name</button></div>
+                        <div class="col-6"><button class="btn btn-custom-red rounded-1" onclick="printAllCities()">Print All Cities</button></div>
+                        <div class="col-6"><button class="btn btn-custom-red rounded-1" onclick="addCity()">Add Your City In List</button></div>
+                        <div class="col-6 mt-2"><button class="btn btn-custom-red rounded-1" onclick="generateTable()">Generate Table</button></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <h4 class="section-title">Output / Result</h4>
+                <div class="custom-container output-box shadow-sm mb-3" id="outputBox">
+                    </div>
+                <div class="text-center">
+                    <button class="btn btn-clear rounded-1 shadow-sm" onclick="clearOutput()">Clear Output</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-custom-dark text-center py-2 text-white mt-auto">
+        <small class="opacity-75">&copy; 2026. Assignments By <strong>Husnain</strong></small>
     </footer>
 
+    <script src="script.js"></script>
+</body>
+</html>
     <script src="script.js"></script>
 </body>
 </html>
