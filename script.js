@@ -1,294 +1,107 @@
-"use strict";
+const outputBox = document.getElementById('outputBox');
+        const inputField = document.getElementById('inputValue');
+        
+        // Initial Array based on the design
+        let cities = ["Faisalabad", "Lahore", "Karachi", "Islamabad", "Peshawar", "Sarghoda", "Gojra"];
 
-/* ===========================
-   DOM REFERENCES
-=========================== */
-
-const originalStatement = document.getElementById("originalStatement");
-const outputResult = document.getElementById("outputResult");
-
-const buttons = {
-    concatenate: document.querySelector("[data-action='concatenate']"),
-    askName: document.querySelector("[data-action='askName']"),
-    comparison: document.querySelector("[data-action='comparison']"),
-    ifElse: document.querySelector("[data-action='ifElse']"),
-    testConditions: document.querySelector("[data-action='testConditions']"),
-    nestedIf: document.querySelector("[data-action='nestedIf']"),
-    login: document.querySelector("[data-action='login']"),
-    check: document.querySelector("[data-action='check']")
-};
-
-const clearStatementBtn = document.getElementById("clearStatement");
-const clearOutputBtn = document.getElementById("clearOutput");
-
-
-/* ===========================
-   UTILITY FUNCTIONS
-=========================== */
-
-function setStatement(code) {
-    originalStatement.value = code.trim();
-}
-
-function setOutput(result) {
-    outputResult.value = result;
-}
-
-function clearStatement() {
-    originalStatement.value = "";
-}
-
-function clearOutput() {
-    outputResult.value = "";
-}
-
-function promptRequired(message) {
-    const input = prompt(message);
-    if (input === null || input.trim() === "") {
-        alert("Input is required.");
-        return null;
-    }
-    return input.trim();
-}
-
-
-/* ===========================
-   FEATURE FUNCTIONS
-=========================== */
-
-function concatenateStrings() {
-    const str1 = "Hello";
-    const str2 = "World";
-
-    const code = `
-let str1 = "Hello";
-let str2 = "World";
-let result = str1 + " " + str2;
-`;
-
-    const result = str1 + " " + str2;
-
-    setStatement(code);
-    setOutput(result);
-}
-
-function askName() {
-    const code = `
-let name = prompt("Enter your name");
-
-if (name) {
-    console.log("Hello, " + name);
-} else {
-    console.log("No name entered");
-}
-`;
-
-    const name = promptRequired("Enter your name:");
-
-    setStatement(code);
-
-    if (name === null) {
-        setOutput("No name entered.");
-        return;
-    }
-
-    setOutput(`Hello, ${name}!`);
-}
-
-function comparisonOperators() {
-    const a = 10;
-    const b = 5;
-
-    const code = `
-let a = 10;
-let b = 5;
-
-if (a > b) {
-    console.log("a is greater than b");
-} else {
-    console.log("a is not greater than b");
-}
-`;
-
-    const result = a > b
-        ? "a is greater than b"
-        : "a is not greater than b";
-
-    setStatement(code);
-    setOutput(result);
-}
-
-function ifElseExample() {
-    const num = 20;
-
-    const code = `
-let num = 20;
-
-if (num > 0) {
-    console.log("Positive");
-} else if (num < 0) {
-    console.log("Negative");
-} else {
-    console.log("Zero");
-}
-`;
-
-    let result;
-
-    if (num > 0) {
-        result = "Number is Positive";
-    } else if (num < 0) {
-        result = "Number is Negative";
-    } else {
-        result = "Number is Zero";
-    }
-
-    setStatement(code);
-    setOutput(result);
-}
-
-function testConditions() {
-    const age = 18;
-
-    const code = `
-let age = 18;
-
-if (age >= 18 && age < 60) {
-    console.log("Eligible Adult");
-} else {
-    console.log("Not Eligible");
-}
-`;
-
-    const result =
-        age >= 18 && age < 60
-            ? "Eligible Adult"
-            : "Not Eligible";
-
-    setStatement(code);
-    setOutput(result);
-}
-
-function nestedIfExample() {
-    const marks = 85;
-
-    const code = `
-let marks = 85;
-
-if (marks >= 50) {
-    if (marks >= 80) {
-        console.log("Distinction");
-    } else {
-        console.log("Pass");
-    }
-} else {
-    console.log("Fail");
-}
-`;
-
-    let result;
-
-    if (marks >= 50) {
-        if (marks >= 80) {
-            result = "Distinction";
-        } else {
-            result = "Pass";
+        // Helper: Prints to Output Box
+        function printOutput(htmlStr) {
+            outputBox.innerHTML = htmlStr;
         }
-    } else {
-        result = "Fail";
-    }
 
-    setStatement(code);
-    setOutput(result);
-}
+        // Helper: Clears Output
+        function clearOutput() {
+            outputBox.innerHTML = "";
+        }
 
-function loginExample() {
-    const code = `
-let username = prompt("Enter username");
-let password = prompt("Enter password");
+        // Helper: Clears Input
+        function clearInput() {
+            inputField.value = "";
+        }
 
-if (username === "admin" && password === "1234") {
-    console.log("Login Successful");
-} else {
-    console.log("Invalid Credentials");
-}
-`;
+        // 1. Simple Alert
+        function simpleAlert() {
+            alert("Alert!");
+            printOutput("<em>An alert box was displayed.</em>");
+        }
 
-    const username = promptRequired("Enter username:");
-    if (username === null) {
-        setStatement(code);
-        setOutput("Login cancelled.");
+        // 2. Print My Name
+        function printMyName() {
+            let name = inputField.value.trim();
+            if (!name) {
+                name = prompt("Please enter your name:").trim(); 
+            }
+            printOutput(`My name is <strong>${name}</strong>.`);
+        }
+
+        // 3. Print All Cities
+        function printAllCities() {
+            let listHtml = "<strong>List of Cities:</strong><br><br>";
+            
+            // Using a for loop as per the chapter topic
+            for (let i = 0; i < cities.length; i++) {
+                listHtml += `${i + 1}) ${cities[i]} <br>`;
+            }
+            
+            printOutput(listHtml);
+        }
+
+        // 4. Add Your City In List
+        function addCity() {
+            let newCity = inputField.value.trim();
+            
+            if (!newCity) {
+                printOutput("<span class='text-danger'>Please type a city name in the Input box to add it.</span>");
+                return;
+            }
+            
+            // Format city name nicely (e.g., "new york" -> "New York")
+            newCity = newCity.charAt(0).toUpperCase() + newCity.slice(1).toLowerCase();
+            
+            // Add to array
+            cities.push(newCity);
+            
+            printOutput(`<strong>${newCity}</strong> has been successfully added to the array! <br><br>Click "Print All Cities" to see the updated list.`);
+            clearInput(); // Clear the input field after successful addition
+        }
+
+     // 5. Generate Table of Cities
+function generateTable() {
+    // Check if the array is empty just in case
+    if (cities.length === 0) {
+        printOutput("<span class='text-danger'>The city list is empty. Add some cities first!</span>");
         return;
     }
 
-    const password = promptRequired("Enter password:");
-    if (password === null) {
-        setStatement(code);
-        setOutput("Login cancelled.");
-        return;
+    // Start building an HTML table using Bootstrap classes for styling
+    let tableHtml = `
+        <table class="table table-sm table-bordered table-striped mt-3 bg-white text-start">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 30%;">Array Index</th>
+                    <th>City Name</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    
+    // Use a for loop to go through the cities array
+    for (let i = 0; i < cities.length; i++) {
+        tableHtml += `
+            <tr>
+                <td>${i}</td>
+                <td>${cities[i]}</td>
+            </tr>
+        `;
     }
-
-    setStatement(code);
-
-    if (username === "admin" && password === "1234") {
-        setOutput("Login Successful");
-    } else {
-        setOutput("Invalid Credentials");
-    }
+    
+    // Close the table tags
+    tableHtml += `
+            </tbody>
+        </table>
+    `;
+    
+    // Print the final table to the output box
+    printOutput(`<strong>City Index Table:</strong>${tableHtml}`);
+    clearInput();
 }
-
-function checkEvenOdd() {
-    const code = `
-let number = Number(prompt("Enter a number"));
-
-if (number % 2 === 0) {
-    console.log("Even");
-} else {
-    console.log("Odd");
-}
-`;
-
-    const input = promptRequired("Enter a number:");
-    if (input === null) {
-        setStatement(code);
-        setOutput("Operation cancelled.");
-        return;
-    }
-
-    const number = Number(input);
-
-    if (isNaN(number)) {
-        setStatement(code);
-        setOutput("Invalid number.");
-        return;
-    }
-
-    const result =
-        number % 2 === 0
-            ? "Even Number"
-            : "Odd Number";
-
-    setStatement(code);
-    setOutput(result);
-}
-
-
-/* ===========================
-   EVENT LISTENERS
-=========================== */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    buttons.concatenate?.addEventListener("click", concatenateStrings);
-    buttons.askName?.addEventListener("click", askName);
-    buttons.comparison?.addEventListener("click", comparisonOperators);
-    buttons.ifElse?.addEventListener("click", ifElseExample);
-    buttons.testConditions?.addEventListener("click", testConditions);
-    buttons.nestedIf?.addEventListener("click", nestedIfExample);
-    buttons.login?.addEventListener("click", loginExample);
-    buttons.check?.addEventListener("click", checkEvenOdd);
-
-    clearStatementBtn?.addEventListener("click", clearStatement);
-    clearOutputBtn?.addEventListener("click", clearOutput);
-
-});
