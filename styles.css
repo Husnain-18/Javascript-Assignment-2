@@ -1,0 +1,107 @@
+  /* Base page styling */
+        body {
+            background-color: #eef7f1; /* Light greenish background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #212529;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Navbar & Footer Styling */
+        .bg-custom-dark {
+            background-color: #1e3650; /* Dark slate blue */
+        }
+
+        /* Container Borders */
+        .custom-container {
+            border: 1px solid #b2c5b7;
+            border-radius: 4px;
+            background-color: transparent;
+            padding: 20px;
+        }
+
+        /* Original String Box */
+        .string-box {
+            background-color: #1e3650;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            text-align: center;
+            line-height: 1.6;
+            padding: 15px 30px;
+        }
+
+        /* Red Button Styling */
+        .btn-custom-red {
+            background-color: #df4458;
+            color: white;
+            border: none;
+            font-size: 0.85rem;
+            padding: 8px 16px;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .btn-custom-red:hover {
+            background-color: #c93b4d;
+            color: white;
+        }
+
+        /* Clear Button Styling */
+        .btn-clear {
+            background-color: #f8f9fa;
+            color: #495057;
+            border: 1px solid #6c757d;
+            font-size: 0.85rem;
+            padding: 6px 20px;
+        }
+        .btn-clear:hover {
+            background-color: #e2e6ea;
+            color: #212529;
+        }
+
+        /* Output Box */
+        .output-box {
+            height: 200px;
+            overflow-y: auto;
+            background-color: transparent;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        
+        /* Typography adjustments */
+        .page-title {
+            color: #1e3650;
+            font-size: 1.6rem;
+            font-weight: 500;
+        }
+        .section-title {
+            color: #1e3650;
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        /* Search Input Styling */
+        .search-input {
+            border-radius: 2px;
+            border: none;
+            padding: 4px 10px;
+        }
+        .search-btn {
+            border: 1px solid green;
+            color: green;
+            background: transparent;
+            border-radius: 2px;
+            padding: 4px 15px;
+        }
+        .search-btn:hover {
+            background: green;
+            color: white;
+        }
